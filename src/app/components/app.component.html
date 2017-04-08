@@ -2,10 +2,10 @@
 <main>
     <section class="todo-app--tasks flex-container flex-space-between padding-vertical-base">
         <ssw-tasks-container class="flex-1"
-                             tasks="$ctrl.tasks"
-                             preview-item="$ctrl.itemToPreview"
-                             on-move="$ctrl.moveTask(obj)"
-                             on-preview="$ctrl.previewTask(task)">
+                             [tasks]="$ctrl.tasks"
+                             [preview-item]="$ctrl.itemToPreview"
+                             (move)="$ctrl.moveTask($event)"
+                             (preview)="$ctrl.previewTask($event)">
         </ssw-tasks-container>
         <ssw-sidebar class="todo-app--tasks-sidebar"
                      ng-if="$ctrl.tasks.length > 0"

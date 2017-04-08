@@ -1,15 +1,17 @@
-import tasksContainerTemplate from './tasks-container.component.html'
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import tasksContainerTemplate from './tasks-container.component.html';
 
-class TasksContainerComponent {
-    public static $inject = [];
+@Component({
+    selector: 'ssw-tasks-container',
+    template: tasksContainerTemplate
+})
+export class TasksContainerComponent {
+    @Input() public tasks: ITask[];
+    @Input() public previewItem: ITask;
+    @Output() public preview = new EventEmitter<ITask>();
+    @Output() public move = new EventEmitter<{task: ITask, status: Status}>();
 
-    public tasks: ITask[];
-    public previewItem: ITask;
     public statuses: Array<Status> = ['todo', 'doing', 'done'];
-
-    public onPreview: (obj: {task: ITask}) => void;
-    public onMove: (obj: {task: ITask, status: Status}) => void;
-
 
     public getTasksByStatus (status: Status): Array<ITask> {
         return this.tasks.filter((task: ITask) => {
@@ -18,21 +20,10 @@ class TasksContainerComponent {
     }
 
     public showPreview(task: ITask): void {
-        this.onPreview({task});
+        this.preview.emit(task);
     }
 
-    public moveTask (obj: any): void {
-        this.onMove(<any>{obj});
+    public moveTask (obj: {task: ITask, status: Status}): void {
+        this.move.emit(obj);
     }
 }
-
-export const tasksContainerComponent = {
-    bindings: {
-        tasks: "<",
-        previewItem: "<",
-        onPreview: "&",
-        onMove: "&"
-    },
-    controller: TasksContainerComponent,
-    template: tasksContainerTemplate
-};

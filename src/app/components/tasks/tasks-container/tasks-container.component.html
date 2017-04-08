@@ -1,12 +1,12 @@
 <div class="todo-app--tasks-list flex-container flex-1 flex-space-between">
     <div class="todo-app--tasks-list-{{status}} flex-1 text-center padding-horizontal-base bordered-column-left"
-         ng-repeat="status in $ctrl.statuses">
-        <h3>{{status.toUpperCase()}}({{$ctrl.getTasksByStatus(status).length}})</h3>
-        <ssw-task ng-repeat="task in $ctrl.getTasksByStatus(status)"
+         *ngFor="let status of statuses">
+        <h3>{{status.toUpperCase()}}({{getTasksByStatus(status).length}})</h3>
+        <ssw-task *ngFor="let task of getTasksByStatus(status)"
                   [task]="task"
-                  [active]="task == $ctrl.previewItem"
-                  (preview)="$ctrl.showPreview(task)"
-                  (move)="$ctrl.moveTask($event.task)">
+                  [active]="task == previewItem"
+                  (preview)="showPreview(task)"
+                  (move)="moveTask($event.task)">
         </ssw-task>
     </div>
 </div>
