@@ -1,47 +1,35 @@
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import sidebarTemplate from './sidebar.component.html';
 
-class SidebarComponent {
-    public static $inject = [];
+@Component({
+    selector: 'ssw-sidebar',
+    template: sidebarTemplate
+})
+export class SidebarComponent {
+    @Input() public previewItem: ITask;
+    @Input() public formItem: ITask;
+    @Input() public action: FormAction;
+    @Input() public extended: boolean;
+    @Input() public preview: boolean;
 
-    public item: ITask;
-    public action: FormAction;
-    public extended: boolean;
-    public preview: boolean;
+    @Output() public save = new EventEmitter<ITask>();
+    @Output() public edit = new EventEmitter<ITask>();
+    @Output() public cancel = new EventEmitter<void>();
+    @Output() public remove = new EventEmitter<ITask>();
 
-    public onRemove: (obj: {task: ITask}) => void;
-    public onCancel: () => void;
-    public onSave: (obj: {task: ITask}) => void;
-    public onEdit: (task: {task: ITask}) => void;
-
-    public removeTask(task: ITask): void {
-        this.onRemove({task});
+    public saveForm(item: ITask): void {
+        this.save.emit(item);
     }
 
     public cancelForm(): void {
-        this.onCancel();
+        this.cancel.emit();
     }
 
-    public saveForm(task: ITask): void {
-        this.onSave({task});
+    public removeTask(task: ITask): void {
+        this.remove.emit(task);
     }
 
-    public editTask(): void {
-        this.onEdit({task: this.item});
+    public editTask(task: ITask): void {
+        this.edit.emit(task);
     }
 }
-
-export const sidebarComponent = {
-    bindings: {
-        previewItem: "<",
-        formItem: "<",
-        action: "<",
-        extended: "<",
-        preview: "<",
-        onRemove: "&",
-        onCancel: "&",
-        onSave: "&",
-        onEdit: "&"
-    },
-    controller: SidebarComponent,
-    template: sidebarTemplate
-};

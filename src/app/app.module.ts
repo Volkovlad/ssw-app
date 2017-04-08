@@ -7,7 +7,7 @@ import {
     headerComponentDowngraded,
     tasksContainerComponentDowngraded,
     taskComponentDowngraded,
-    sidebarComponent,
+    sidebarComponentDowngraded,
     previewComponentDowngraded,
     formComponentDowngraded
 } from './components';
@@ -18,7 +18,7 @@ module ('todoApp', [])
     .directive('sswHeader', headerComponentDowngraded)
     .directive('sswTasksContainer', tasksContainerComponentDowngraded)
     .directive('sswTask', taskComponentDowngraded)
-    .component('sswSidebar', sidebarComponent)
+    .directive('sswSidebar', sidebarComponentDowngraded)
     .directive('sswPreview', previewComponentDowngraded)
     .directive('sswForm', formComponentDowngraded)
     .service('ApiService', ApiService)
@@ -33,7 +33,8 @@ import {
     TaskComponent,
     TasksContainerComponent,
     FormComponent,
-    PreviewComponent
+    PreviewComponent,
+    SidebarComponent
 } from './components';
 
 
@@ -48,14 +49,16 @@ import {
         TaskComponent,
         TasksContainerComponent,
         FormComponent,
-        PreviewComponent
+        PreviewComponent,
+        SidebarComponent
     ],
     entryComponents: [
         HeaderComponent,
         TaskComponent,
         TasksContainerComponent,
         FormComponent,
-        PreviewComponent
+        PreviewComponent,
+        SidebarComponent
     ]
 })
 export class AppModule {

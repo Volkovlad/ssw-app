@@ -1,18 +1,18 @@
 <aside class="text-center bordered-column-left"
-       ng-class="{extended: $ctrl.sidebarExtended}">
-    <div ng-if="$ctrl.extended">
-        <ssw-form [item]="$ctrl.formItem"
-                  [action]="$ctrl.action"
-                  (save)="$ctrl.saveForm($event)"
-                  (cancel)="$ctrl.cancelForm()">
+       [ngClass]="{extended: sidebarExtended}">
+    <div *ngIf="extended">
+        <ssw-form [item]="formItem"
+                  [action]="action"
+                  (save)="saveForm($event)"
+                  (cancel)="cancelForm()">
         </ssw-form>
     </div>
-    <div ng-if="!$ctrl.preview && !$ctrl.extended">
+    <div *ngIf="!preview && !extended">
         Click on any task to preview
     </div>
-    <ssw-preview ng-if="$ctrl.preview"
-                 [item]="$ctrl.previewItem"
-                 (edit)="$ctrl.editTask($event)"
-                 (remove)="$ctrl.removeTask($event)">
+    <ssw-preview *ngIf="preview"
+                 [item]="previewItem"
+                 (edit)="editTask($event)"
+                 (remove)="removeTask($event)">
     </ssw-preview>
 </aside>
