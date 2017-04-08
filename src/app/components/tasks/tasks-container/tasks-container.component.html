@@ -3,10 +3,10 @@
          ng-repeat="status in $ctrl.statuses">
         <h3>{{status.toUpperCase()}}({{$ctrl.getTasksByStatus(status).length}})</h3>
         <ssw-task ng-repeat="task in $ctrl.getTasksByStatus(status)"
-                  task="task"
-                  active="task == $ctrl.previewItem"
-                  on-preview="$ctrl.showPreview(task)"
-                  on-move="$ctrl.moveTask(obj)">
+                  [task]="task"
+                  [active]="task == $ctrl.previewItem"
+                  (preview)="$ctrl.showPreview(task)"
+                  (move)="$ctrl.moveTask($event.task)">
         </ssw-task>
     </div>
 </div>

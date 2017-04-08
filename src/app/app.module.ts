@@ -6,7 +6,7 @@ import {
     appComponent,
     headerComponentDowngraded,
     tasksContainerComponent,
-    taskComponent,
+    taskComponentDowngraded,
     sidebarComponent,
     previewComponent,
     formComponent
@@ -17,7 +17,7 @@ module ('todoApp', [])
     .component('sswApp', appComponent)
     .directive('sswHeader', headerComponentDowngraded)
     .component('sswTasksContainer', tasksContainerComponent)
-    .component('sswTask', taskComponent)
+    .directive('sswTask', taskComponentDowngraded)
     .component('sswSidebar', sidebarComponent)
     .component('sswPreview', previewComponent)
     .component('sswForm', formComponent)
@@ -28,7 +28,10 @@ module ('todoApp', [])
 import { NgModule } from '@angular/core'
 import { BrowserModule } from '@angular/platform-browser';
 import { UpgradeModule } from '@angular/upgrade/static';
-import { HeaderComponent } from './components';
+import {
+    HeaderComponent,
+    TaskComponent
+} from './components';
 
 
 // Angular module
@@ -38,10 +41,12 @@ import { HeaderComponent } from './components';
         UpgradeModule
     ],
     declarations: [
-        HeaderComponent
+        HeaderComponent,
+        TaskComponent
     ],
     entryComponents: [
-        HeaderComponent
+        HeaderComponent,
+        TaskComponent
     ]
 })
 export class AppModule {
