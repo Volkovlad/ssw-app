@@ -1,10 +1,13 @@
-import appTemplate from './app.component.html';
+import { Component, OnInit, Inject } from '@angular/core';
 import { ApiService } from '../services';
 import { Task } from '../models';
+import appTemplate from './app.component.html';
 
-class AppComponent {
-    public static $inject = ["ApiService"];
-
+@Component({
+    selector: 'ssw-app',
+    template: appTemplate
+})
+export class AppComponent implements OnInit {
     public tasks: ITask[] = [];
     public taskLabel = 'SSW';
     public itemToPreview: ITask = null;
@@ -13,11 +16,11 @@ class AppComponent {
     public formAction: FormAction = null;
     public formTask: ITask = null;
     
-    constructor(private apiService: ApiService) {
+    constructor(@Inject('ApiService') private apiService: ApiService) {
 
     }
 
-    public $onInit (): void {
+    public ngOnInit (): void {
         this.apiService
             .getAllTasks()
             .then((tasks: ITask[]) => {
@@ -113,9 +116,3 @@ class AppComponent {
             });
     }
 }
-
-export const appComponent = {
-    bindings: {},
-    controller: AppComponent,
-    template: appTemplate
-};

@@ -1,6 +1,7 @@
 export * from './header/header.component';
 export * from './header/header.component.downgraded';
 export * from './app.component';
+export * from './app.component.downgraded';
 export * from './tasks/task/task.component';
 export * from './tasks/task/task.component.downgraded';
 export * from './tasks/tasks-container/tasks-container.component';

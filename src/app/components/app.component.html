@@ -1,23 +1,23 @@
-<ssw-header (add)="$ctrl.showSidebarForm('create')"></ssw-header>
+<ssw-header (add)="showSidebarForm('create')"></ssw-header>
 <main>
     <section class="todo-app--tasks flex-container flex-space-between padding-vertical-base">
         <ssw-tasks-container class="flex-1"
-                             [tasks]="$ctrl.tasks"
-                             [preview-item]="$ctrl.itemToPreview"
-                             (move)="$ctrl.moveTask($event)"
-                             (preview)="$ctrl.previewTask($event)">
+                             [tasks]="tasks"
+                             [previewItem]="itemToPreview"
+                             (move)="moveTask($event)"
+                             (preview)="previewTask($event)">
         </ssw-tasks-container>
         <ssw-sidebar class="todo-app--tasks-sidebar"
-                     *ngIf="$ctrl.tasks.length > 0"
-                     [extended]="$ctrl.sidebarExtended"
-                     [preview]="$ctrl.showPreviewForItem"
-                     [action]="$ctrl.formAction"
-                     [form-item]="$ctrl.formTask"
-                     [preview-item]="$ctrl.itemToPreview"
-                     (remove)="$ctrl.removeTask($event)"
-                     (save)="$ctrl.submitForm($event)"
-                     (cancel)="$ctrl.cancelForm()"
-                     (edit)="$ctrl.showSidebarForm('update')">
+                     *ngIf="tasks.length > 0"
+                     [extended]="sidebarExtended"
+                     [preview]="showPreviewForItem"
+                     [action]="formAction"
+                     [formItem]="formTask"
+                     [previewItem]="itemToPreview"
+                     (remove)="removeTask($event)"
+                     (save)="submitForm($event)"
+                     (cancel)="cancelForm()"
+                     (edit)="showSidebarForm('update')">
         </ssw-sidebar>
     </section>
 </main>

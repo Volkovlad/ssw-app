@@ -1,9 +1,9 @@
 // AngularJS imports
 import { module } from 'angular';
 
-import { ApiService } from './services';
+import { ApiService, apiServiceProvider } from './services';
 import {
-    appComponent,
+    appComponentDowngraded,
     headerComponentDowngraded,
     tasksContainerComponentDowngraded,
     taskComponentDowngraded,
@@ -14,7 +14,7 @@ import {
 
 // AngularJS module
 module ('todoApp', [])
-    .component('sswApp', appComponent)
+    .directive('sswApp', appComponentDowngraded)
     .directive('sswHeader', headerComponentDowngraded)
     .directive('sswTasksContainer', tasksContainerComponentDowngraded)
     .directive('sswTask', taskComponentDowngraded)
@@ -28,7 +28,9 @@ module ('todoApp', [])
 import { NgModule } from '@angular/core'
 import { BrowserModule } from '@angular/platform-browser';
 import { UpgradeModule } from '@angular/upgrade/static';
+
 import {
+    AppComponent,
     HeaderComponent,
     TaskComponent,
     TasksContainerComponent,
@@ -45,6 +47,7 @@ import {
         UpgradeModule
     ],
     declarations: [
+        AppComponent,
         HeaderComponent,
         TaskComponent,
         TasksContainerComponent,
@@ -53,12 +56,16 @@ import {
         SidebarComponent
     ],
     entryComponents: [
+        AppComponent,
         HeaderComponent,
         TaskComponent,
         TasksContainerComponent,
         FormComponent,
         PreviewComponent,
         SidebarComponent
+    ],
+    providers: [
+        apiServiceProvider
     ]
 })
 export class AppModule {
