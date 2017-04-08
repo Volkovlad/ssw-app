@@ -1,30 +1,25 @@
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import formTemplate from './form.component.html';
 
-class FormComponent {
-    public static $inject = [];
+@Component({
+    selector: 'ssw-form',
+    template: formTemplate,
+})
+export class FormComponent {
+    @Input() public item: ITask;
+    @Input() public action: FormAction;
+    @Output() public save = new EventEmitter<ITask>();
+    @Output() public cancel = new EventEmitter<void>();
 
-    public formItem: ITask;
-    public action: FormAction;
-
-    public onCancel: () => void;
-    public onSave: (task: {task: ITask}) => void;
-
-    public saveForm(task: ITask): void {
-        this.onSave({task});
+    public saveForm(): void {
+        this.save.emit(this.item);
     }
 
     public cancelForm(): void {
-        this.onCancel();
+        this.cancel.emit();
+    }
+
+    public onChange(field: FormField, value: string): void {
+        this.item[field] = value;
     }
 }
-
-export const formComponent = {
-    bindings: {
-        item: "<",
-        action: "<",
-        onCancel: "&",
-        onSave: "&"
-    },
-    controller: FormComponent,
-    template: formTemplate
-};

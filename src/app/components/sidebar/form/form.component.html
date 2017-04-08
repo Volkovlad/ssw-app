@@ -4,7 +4,8 @@
               cols="50"
               rows="10"
               name="summary"
-              ng-model="$ctrl.item.summary"
+              value="{{item.summary}}"
+              (change)="onChange('summary', $event.target.value)"
               class="form-control padding-vertical-base">
     </textarea><br><br>
 
@@ -13,10 +14,11 @@
               cols="50"
               rows="10"
               name="description"
-              ng-model="$ctrl.item.description"
+              value="{{item.description}}"
+              (change)="onChange('description', $event.target.value)"
               class="form-control padding-vertical-base">
     </textarea><br><br>
 
-    <button class="todo-app--tasks-preview-edit button-secondary" ng-click="$ctrl.saveForm($ctrl.item)">{{$ctrl.action}}</button>
-    <button class="todo-app--tasks-preview-remove button-primary" ng-click="$ctrl.cancelForm()">Cancel</button>
+    <button class="todo-app--tasks-preview-edit button-secondary" (click)="saveForm()">{{action}}</button>
+    <button class="todo-app--tasks-preview-remove button-primary" (click)="cancelForm()">Cancel</button>
 </form>

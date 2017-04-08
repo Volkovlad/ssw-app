@@ -9,7 +9,6 @@ export class HeaderComponent {
     @Output() public add = new EventEmitter<void>();
 
     public addNewTask(): void {
-        debugger;
         this.add.emit();
     }
 }

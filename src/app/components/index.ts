@@ -8,3 +8,4 @@ export * from './tasks/tasks-container/tasks-container.component.downgraded';
 export * from './sidebar/sidebar.component';
 export * from './sidebar/preview/preview.component';
 export * from './sidebar/form/form.component';
+export * from './sidebar/form/form.component.downgraded';

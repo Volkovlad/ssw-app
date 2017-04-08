@@ -1,10 +1,10 @@
 <aside class="text-center bordered-column-left"
        ng-class="{extended: $ctrl.sidebarExtended}">
     <div ng-if="$ctrl.extended">
-        <ssw-form item="$ctrl.formItem"
-                  action="$ctrl.action"
-                  on-save="$ctrl.saveForm(task)"
-                  on-cancel="$ctrl.cancelForm()">
+        <ssw-form [item]="$ctrl.formItem"
+                  [action]="$ctrl.action"
+                  (save)="$ctrl.saveForm($event)"
+                  (cancel)="$ctrl.cancelForm()">
         </ssw-form>
     </div>
     <div ng-if="!$ctrl.preview && !$ctrl.extended">

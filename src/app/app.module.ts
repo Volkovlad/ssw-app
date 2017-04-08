@@ -9,7 +9,7 @@ import {
     taskComponentDowngraded,
     sidebarComponent,
     previewComponent,
-    formComponent
+    formComponentDowngraded
 } from './components';
 
 // AngularJS module
@@ -20,7 +20,7 @@ module ('todoApp', [])
     .directive('sswTask', taskComponentDowngraded)
     .component('sswSidebar', sidebarComponent)
     .component('sswPreview', previewComponent)
-    .component('sswForm', formComponent)
+    .directive('sswForm', formComponentDowngraded)
     .service('ApiService', ApiService)
     .name;
 
@@ -31,7 +31,8 @@ import { UpgradeModule } from '@angular/upgrade/static';
 import {
     HeaderComponent,
     TaskComponent,
-    TasksContainerComponent
+    TasksContainerComponent,
+    FormComponent
 } from './components';
 
 
@@ -44,12 +45,14 @@ import {
     declarations: [
         HeaderComponent,
         TaskComponent,
-        TasksContainerComponent
+        TasksContainerComponent,
+        FormComponent
     ],
     entryComponents: [
         HeaderComponent,
         TaskComponent,
-        TasksContainerComponent
+        TasksContainerComponent,
+        FormComponent
     ]
 })
 export class AppModule {
