@@ -1,31 +1,24 @@
-import previewTemplate from './preview.component.html'
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import previewTemplate from './preview.component.html';
 
-class PreviewComponent {
-    public static $inject = [];
-
-    public item: ITask;
-    public onRemove: (obj: {task: ITask}) => void;
-    public onEdit: (task: {task: ITask}) => void;
+@Component({
+    selector: 'ssw-preview',
+    template: previewTemplate
+})
+export class PreviewComponent {
+    @Input() public item: ITask;
+    @Output() public edit = new EventEmitter<ITask>();
+    @Output() public remove = new EventEmitter<ITask>();
 
     public getDateFromTimestamp(timestamp: number, locale?: boolean): string | Date {
         return locale ? (new Date(timestamp)).toLocaleString() : new Date(timestamp);
     }
 
-    public removeTask(task: ITask): void {
-        this.onRemove({task});
+    public editTask(): void {
+        this.edit.emit(this.item);
     }
 
-    public editTask(): void {
-        this.onEdit({task: this.item});
+    public removeTask(task: ITask): void {
+        this.remove.emit(task);
     }
 }
-
-export const previewComponent = {
-    bindings: {
-        item: "<",
-        onRemove: "&",
-        onEdit: "&"
-    },
-    controller: PreviewComponent,
-    template: previewTemplate
-};

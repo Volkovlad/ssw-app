@@ -1,15 +1,15 @@
 <div class="text-left padding-horizontal-base">
-    <b>Summary:</b> <br> {{$ctrl.item.summary}} <br><br>
-    <b>Description:</b> <br> {{$ctrl.item.description}} <br> <br>
-    <b>Status:</b> <br> {{$ctrl.item.status}} <br> <br>
-    <b>Created:</b> <br> {{$ctrl.getDateFromTimestamp($ctrl.item.date, true)}} <br> <br>
+    <b>Summary:</b> <br> {{item.summary}} <br><br>
+    <b>Description:</b> <br> {{item.description}} <br> <br>
+    <b>Status:</b> <br> {{item.status}} <br> <br>
+    <b>Created:</b> <br> {{getDateFromTimestamp(item.date, true)}} <br> <br>
     <hr>
     <button class="todo-app--tasks-preview-edit button-secondary"
-            ng-click="$ctrl.editTask()">
+            (click)="editTask()">
         Edit
     </button>
     <button class="todo-app--tasks-preview-remove button-primary"
-            ng-click="$ctrl.removeTask($ctrl.item)">
+            (click)="removeTask(item)">
         Remove
     </button>
 </div>

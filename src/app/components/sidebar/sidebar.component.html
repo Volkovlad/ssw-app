@@ -11,8 +11,8 @@
         Click on any task to preview
     </div>
     <ssw-preview ng-if="$ctrl.preview"
-                 item="$ctrl.previewItem"
-                 on-edit="$ctrl.editTask(task)"
-                 on-remove="$ctrl.removeTask(task)">
+                 [item]="$ctrl.previewItem"
+                 (edit)="$ctrl.editTask($event)"
+                 (remove)="$ctrl.removeTask($event)">
     </ssw-preview>
 </aside>
