@@ -1,9 +1,4 @@
-export function apiServiceFactory($injector: any) {
-    return $injector.get('ApiService');
-}
+import { downgradeInjectable } from '@angular/upgrade/static';
+import { ApiService } from './api.service';
 
-export const apiServiceProvider = {
-    provide: 'ApiService',
-    deps: ['$injector'],
-    useFactory: apiServiceFactory
-};
+export const ApiServiceDowngraded = downgradeInjectable(ApiService);

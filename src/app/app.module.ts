@@ -1,7 +1,8 @@
 // AngularJS imports
 import { module } from 'angular';
 
-import { ApiService, apiServiceProvider } from './services';
+import { ApiService, ApiServiceDowngraded } from './services';
+
 import {
     appComponentDowngraded,
     headerComponentDowngraded,
@@ -21,13 +22,14 @@ module ('todoApp', [])
     .directive('sswSidebar', sidebarComponentDowngraded)
     .directive('sswPreview', previewComponentDowngraded)
     .directive('sswForm', formComponentDowngraded)
-    .service('ApiService', ApiService)
+    .factory('ApiService', ApiServiceDowngraded)
     .name;
 
 // Angular imports
 import { NgModule } from '@angular/core'
 import { BrowserModule } from '@angular/platform-browser';
 import { UpgradeModule } from '@angular/upgrade/static';
+import { HttpModule } from '@angular/http';
 
 import {
     AppComponent,
@@ -44,7 +46,8 @@ import {
 @NgModule({
     imports: [
         BrowserModule,
-        UpgradeModule
+        UpgradeModule,
+        HttpModule
     ],
     declarations: [
         AppComponent,
@@ -65,7 +68,7 @@ import {
         SidebarComponent
     ],
     providers: [
-        apiServiceProvider
+        ApiService
     ]
 })
 export class AppModule {

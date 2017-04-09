@@ -16,14 +16,14 @@ export class AppComponent implements OnInit {
     public formAction: FormAction = null;
     public formTask: ITask = null;
     
-    constructor(@Inject('ApiService') private apiService: ApiService) {
+    constructor(private apiService: ApiService) {
 
     }
 
     public ngOnInit (): void {
         this.apiService
             .getAllTasks()
-            .then((tasks: ITask[]) => {
+            .subscribe((tasks: ITask[]) => {
                 this.tasks = tasks;
             });
     }
@@ -47,7 +47,7 @@ export class AppComponent implements OnInit {
 
         this.apiService
             .updateTask(task.id, updated)
-            .then(() => {
+            .subscribe(() => {
                 this.tasks[index].status = status;
             });
     }
@@ -81,7 +81,7 @@ export class AppComponent implements OnInit {
 
                 this.apiService
                     .createTask(task)
-                    .then(() => {
+                    .subscribe(() => {
                         this.tasks.push(task);
                     });
                 break;
@@ -90,7 +90,7 @@ export class AppComponent implements OnInit {
 
                 this.apiService
                     .updateTask(task.id, task)
-                    .then(() => {
+                    .subscribe(() => {
                         this.tasks.splice(index, 1, task);
                     });
 
@@ -109,7 +109,7 @@ export class AppComponent implements OnInit {
 
         this.apiService
             .removeTask(task.id)
-            .then(() => {
+            .subscribe(() => {
                 this.tasks.splice(index, 1);
                 this.showPreviewForItem = false;
                 this.itemToPreview = null;
