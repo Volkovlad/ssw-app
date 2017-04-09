@@ -22,6 +22,7 @@ class TasksContainerComponent {
     }
 
     public moveTask (obj: any): void {
+        debugger
         this.onMove(<any>{obj});
     }
 }

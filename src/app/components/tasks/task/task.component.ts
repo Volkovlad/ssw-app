@@ -1,16 +1,18 @@
+import { Component, EventEmitter, Input, Output} from '@angular/core';
 import taskTemplate from './task.component.html';
 
-class TaskComponent {
-    public static $inject = [];
+@Component({
+    selector: 'ssw-task',
+    template: taskTemplate
+})
+export class TaskComponent {
+    @Input() public task: ITask;
+    @Input() public active: boolean;
 
-    public task: ITask;
-    public statuses: Array<Status> = ['todo', 'doing', 'done'];
+    @Output() public preview = new EventEmitter<ITask>();
+    @Output() public move = new EventEmitter<{task: ITask, status: Status}>();
     public taskLabel = 'SSW'; // Stands for SoftServe Workshop
-    public active: boolean;
-
-    public onPreview: (task: ITask) => void;
-    public onMove: (obj: {task: ITask, status: Status}) => void;
-
+    public statuses: Array<Status> = ['todo', 'doing', 'done'];
 
     public getRemainingStatuses (currentStatus: Status): Array<Status> {
         let remainingStatuses: Array<Status> = [];
@@ -25,21 +27,10 @@ class TaskComponent {
     }
 
     public showPreview(task: ITask): void {
-        this.onPreview(task);
+        this.preview.emit(task);
     }
 
     public moveTask (obj: {task: ITask, status: Status}): void {
-        this.onMove(<any>{obj});
+        this.move.emit(obj);
     }
 }
-
-export const taskComponent = {
-    bindings: {
-        task: "<",
-        active: "<",
-        onPreview: "&",
-        onMove: "&"
-    },
-    controller: TaskComponent,
-    template: taskTemplate
-};
